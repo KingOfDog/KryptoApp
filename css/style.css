@@ -1,0 +1,40 @@
+body {
+    padding-top: 190px;
+}
+
+.header {
+    background: #0275D8;
+    color: #ffffff;
+    padding: 50px;
+    transition: all 100ms;
+}
+
+.header h3 {
+    transition: all 100ms;
+    text-align: center;
+}
+
+.header span {
+    color: #9ca3a8;
+    float: right;
+    text-align: right;
+    font-size: 14px;
+}
+
+.header h1 {
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.jumbotron .table td {
+    padding: 0.2rem 0.75rem;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    text-transform: uppercase;
+}

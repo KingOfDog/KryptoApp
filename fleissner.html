@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Fleißnersche Schablone - Krypto</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div class="header fixed-top">
+    <span>Version 1.0.0-a<br>Marcel Struck</span>
+    <a href="index.html" class="text-white"><h1>Krypto</h1></a>
+    <h3>Verschlüsseln - Entschlüsseln - Überschlüsseln?</h3>
+</div>
+<br>
+<section>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center w-100"><a href="index.html">&#10550;</a> Fleißnersche Schablone
+                <br>
+                <small style="font-size:60%;color:#4b5257;">Lasse dir eine vollständige Schablone generieren
+                </small>
+            </h1>
+        </div>
+        <div class="row">
+            <form class="w-100">
+                <div class="form-group">
+                    <label for="text-input">Text eingeben</label>
+                    <textarea class="form-control" id="text-input" rows="5"
+                              placeholder="Bitte gib einen zu verschlüsselnden Text ein..."></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <h3>Textfeld</h3>
+                <table>
+                    <tbody id="text-container"></tbody>
+                </table>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <h3>Schablone</h3>
+                <table id="theme-container"></table>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/fleissner.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Morse-Alphabet - Krypto</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="header fixed-top">
+    <span>Version 1.0.0-a<br>Marcel Struck</span>
+    <h1><a href="index.html" class="text-white">Krypto</a></h1>
+    <h3>Verschlüsseln - Entschlüsseln - Überschlüsseln?</h3>
+</div>
+<br>
+<section>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center w-100"><a href="index.html">&#10550;</a> Morse-Alphabet
+                <br>
+                <small style="font-size:60%;color:#4b5257;">Lasse einen beliebigen Text in ein Morse-Code umwandeln
+                </small>
+            </h1>
+        </div>
+        <div class="row">
+            <form class="w-100">
+                <div class="row">
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="encryptDecrypt" id="encrypt"
+                                   value="encrypt" checked> Kodieren
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="encryptDecrypt" id="decrypt"
+                                   value="decrypt"> Dekodieren
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text-input">Text eingeben</label>
+                    <textarea class="form-control" id="text-input" rows="5"
+                              placeholder="Bitte gib einen Text ein..."></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="jumbotron col-xl-6 col-md-6 col-sm-12">
+                <h3>Kodierter Text</h3>
+                <form class="w-100">
+                    <div class="form-group">
+                        <textarea class="form-control" readonly placeholder="Kodierter Text"
+                                  id="encryptedText"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xl-6 col-md-6 col-sm-12">
+            </div>
+        </div>
+    </div>
+</section>
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/morse.js"></script>
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Vigenère-Quadrat - Krypto</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="header fixed-top">
+    <span>Version 1.0.0-a<br>Marcel Struck</span>
+    <h1><a href="index.html" class="text-white">Krypto</a></h1>
+    <h3>Verschlüsseln - Entschlüsseln - Überschlüsseln?</h3>
+</div>
+<br>
+<section>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center w-100"><a href="index.html">&#10550;</a> Vigenère-Quadrat
+                <br>
+                <small style="font-size:60%;color:#4b5257;">Dies ist ein Encrypter für die polyalphabetische
+                    Vigenère-Chiffre aus dem 16. Jahrhundert
+                </small>
+            </h1>
+        </div>
+        <div class="row">
+            <form class="w-100">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="v-key-input">Schlüssel eingeben</label>
+                            <input type="text" id="v-key-input" class="form-control" required
+                                   placeholder="Bitte gibt ein Schlüsselwort ein">
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="vencryptDecrypt" id="v-encrypt"
+                                       value="encrypt" checked> Verschlüsseln
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="vencryptDecrypt" id="v-decrypt"
+                                       value="decrypt"> Entschlüsseln
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="v-text-input">Text eingeben</label>
+                    <textarea class="form-control" id="v-text-input" rows="5"
+                              placeholder="Bitte gib einen Text ein..."></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="row jumbotron">
+            <h3>Verschlüsselter Text</h3>
+            <form class="w-100">
+                <div class="form-group">
+                        <textarea class="form-control" readonly placeholder="Verschlüsselter Text"
+                                  id="v-encryptedText"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <h3>Vigenère-Quadrat</h3>
+            <table class="table table-striped table-bordered table-responsive">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>G</th>
+                    <th>H</th>
+                    <th>I</th>
+                    <th>J</th>
+                    <th>K</th>
+                    <th>L</th>
+                    <th>M</th>
+                    <th>N</th>
+                    <th>O</th>
+                    <th>P</th>
+                    <th>Q</th>
+                    <th>R</th>
+                    <th>S</th>
+                    <th>T</th>
+                    <th>U</th>
+                    <th>V</th>
+                    <th>W</th>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>Z</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">A</th>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                </tr>
+                <tr>
+                    <th scope="row">B</th>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <th scope="row">C</th>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <th scope="row">D</th>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <th scope="row">E</th>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                </tr>
+                <tr>
+                    <th scope="row">F</th>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <th scope="row">G</th>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <th scope="row">H</th>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                </tr>
+                <tr>
+                    <th scope="row">I</th>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                </tr>
+                <tr>
+                    <th scope="row">J</th>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                </tr>
+                <tr>
+                    <th scope="row">K</th>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                </tr>
+                <tr>
+                    <th scope="row">L</th>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                </tr>
+                <tr>
+                    <th scope="row">M</th>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                </tr>
+                <tr>
+                    <th scope="row">N</th>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                </tr>
+                <tr>
+                    <th scope="row">O</th>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                </tr>
+                <tr>
+                    <th scope="row">P</th>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <th scope="row">Q</th>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                </tr>
+                <tr>
+                    <th scope="row">R</th>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                </tr>
+                <tr>
+                    <th scope="row">S</th>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                </tr>
+                <tr>
+                    <th scope="row">T</th>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                </tr>
+                <tr>
+                    <th scope="row">U</th>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                </tr>
+                <tr>
+                    <th scope="row">V</th>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                </tr>
+                <tr>
+                    <th scope="row">W</th>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                </tr>
+                <tr>
+                    <th scope="row">X</th>
+                    <td>X</td>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                </tr>
+                <tr>
+                    <th scope="row">Y</th>
+                    <td>Y</td>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <th scope="row">Z</th>
+                    <td>Z</td>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                    <td>J</td>
+                    <td>K</td>
+                    <td>L</td>
+                    <td>M</td>
+                    <td>N</td>
+                    <td>O</td>
+                    <td>P</td>
+                    <td>Q</td>
+                    <td>R</td>
+                    <td>S</td>
+                    <td>T</td>
+                    <td>U</td>
+                    <td>V</td>
+                    <td>W</td>
+                    <td>X</td>
+                    <td>Y</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h3>Über diese Verschlüsselung</h3>
+            <blockquote class="blockquote">
+                <p class="mb-0">
+                    Die Vigenère-Chiffre (auch: Vigenère-Verschlüsselung) ist eine aus dem 16. Jahrhundert stammende
+                    Handschlüsselmethode zur Verschlüsselung von geheimzuhaltenden Textnachrichten. Es handelt sich
+                    um ein monographisches polyalphabetisches Substitutionsverfahren. Der Klartext wird in
+                    Monogramme (Einzelzeichen) zerlegt und diese durch Geheimtextzeichen substituiert (ersetzt), die
+                    mithilfe eines Kennworts aus mehreren (poly) unterschiedlichen Alphabeten des
+                    „Vigenère-Quadrats“ ausgewählt werden. Dabei handelt es sich um eine quadratische Anordnung von
+                    untereinander stehenden verschobenen Alphabeten [...].
+                    <br><br>
+                    Die Vigenère-Chiffre steht im Gegensatz zu den einfacheren monoalphabetischen
+                    Substitutionsmethoden, bei denen nur ein einziges (mono) Alphabet verwendet wird. Aufgrund ihrer
+                    für die damalige Zeit als besonders hoch eingeschätzten kryptographischen Sicherheit wurde sie
+                    auch als [...] „die unentzifferbare Chiffre“ [...] bezeichnet, eine aus
+                    damaliger Sicht vielleicht zutreffende, aber aus heutiger Sicht weit übertriebene
+                    Beurteilung.
+                </p>
+                <footer class="blockquote-footer">Wikipedia - <a
+                        href="https://de.wikipedia.org/wiki/Vigen%C3%A8re-Chiffre" target="_blank">Vigenère-Chiffre</a>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+</section>
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/caesar.js"></script>
+<script src="js/vigenere.js"></script>
+</body>
+</html>
